@@ -1,0 +1,30 @@
+<!-- todos.component.html -->
+<main>
+    <h1>My todos</h1>
+    
+    <div *ngIf="!amplifyConfigured" style="background-color: #fff3cd; border: 1px solid #ffeaa7; padding: 10px; margin: 10px 0; border-radius: 5px;">
+        <strong>⚠️ Amplify Backend Not Configured</strong>
+        <p>To enable todo functionality, deploy your Amplify backend and run: <code>npx ampx generate outputs</code></p>
+    </div>
+    
+    <button (click)="createTodo()" [disabled]="!amplifyConfigured">+ new</button>
+    
+    <ul *ngIf="amplifyConfigured">
+        <li 
+            *ngFor="let todo of todos;">
+            {{ todo.content }}
+        </li>
+    </ul>
+    
+    <div *ngIf="!amplifyConfigured && todos.length === 0">
+        <p><em>No todos available. Deploy your Amplify backend to start managing todos.</em></p>
+    </div>
+    
+    <div>
+        🥳 App successfully hosted. Try creating a new todo.
+        <br />
+        <a href="https://docs.amplify.aws/gen2/start/quickstart/">
+            Review next steps of this tutorial.
+        </a>
+    </div>
+</main>
